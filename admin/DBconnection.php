@@ -19,16 +19,17 @@ function deleteOrder($todelete,$conn)
 
 function deleteCar($todelete,$conn)
 {
-        $check = "SELECT * FROM Cars WHERE licencePlate='$todelete'";
-        $res = mysqli_query($conn,$check);
-        $res2 = mysqli_fetch_array($res);
-        $imgtodelete = $res2["imgSrc"];
-        
-        $absolutePath = "/var/www/html";
-        unlink($absolutePath.$imgtodelete);
-
-        $deletion = "DELETE FROM Cars WHERE licencePlate='$todelete'";
-        $result = mysqli_query($conn, $deletion);    
+    $check = "SELECT * FROM Cars WHERE licencePlate='$todelete'";
+    $res = mysqli_query($conn,$check);
+    $res2 = mysqli_fetch_array($res);
+    $imgtodelete = $res2["imgSrc"];
+    
+    $absolutePath = "/var/www/html";
+    unlink($absolutePath.$imgtodelete);
+    
+    $deletion = "DELETE FROM Cars WHERE licencePlate='$todelete'";
+    $result = mysqli_query($conn, $deletion);    
+    var_dump($todelete);
 
 }
 
@@ -152,5 +153,48 @@ else
 
 
 }
+function editCar($conn, $platetoedit, $name_edit, $brand_edit, $category_edit , $seats_edit, $transmission_edit, $price_edit, $image)
+{
 
+
+if( $name_edit == "" || $brand_edit == "" || $category_edit == "" || $transmission_edit == "" || $price_edit == 0)
+{
+    echo '<script>alert("Please fill out all the fields properly!")</script>';
+    return;
+}
+
+
+    $sqln= "UPDATE Cars SET name='$name_edit', brand='$brand_edit', category='$category_edit', seats=$seats_edit, transmission='$transmission_edit', price=$price_edit  WHERE licencePlate='$platetoedit'";
+    mysqli_query($conn,$sqln);
+
+    
+   
+
+    if($image["image"]["size"] != 0)
+    {
+        $check = "SELECT * FROM Cars WHERE licencePlate='$platetoedit'";
+        $res = mysqli_query($conn,$check);
+        $res2 = mysqli_fetch_array($res);
+        $imgtodelete = $res2["imgSrc"];
+        
+        $absolutePath = "/var/www/html";
+         unlink($absolutePath.$imgtodelete);
+
+        //  echo $absolutePath.$imgtodelete;
+
+
+        $newimg = uploadFile($image);
+        $pathForDb = explode("project", $newimg)[1];
+        $sqli= "UPDATE Cars SET imgSrc='$pathForDb' WHERE licencePlate='$platetoedit'";
+        mysqli_query($conn,$sqli);
+
+        
+       
+    }
+
+
+   header("LOCATION: inspectcars.php?carpage=1");
+
+    
+}
 ?>

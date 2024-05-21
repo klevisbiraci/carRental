@@ -26,8 +26,8 @@ class Db {
     }
 
     public function placeOrder(string $dateRented, string $dateReturned, string $pickupLocation, string $dropoffLocation, string $licencePlate, string $contact): void {
-        $statement = "INSERT INTO Orders(dateRented, dateReturned, pickupLocation, dropoffLocation, licencePlate, contact) 
-            VALUES ('$dateRented', '$dateReturned', '$pickupLocation', '$dropoffLocation', '$licencePlate', '$contact')";
+        $statement = "INSERT INTO Orders(dateRented, dateReturned, pickupLocation, dropoffLocation, contact, licencePlate) 
+            VALUES ('$dateRented', '$dateReturned', '$pickupLocation', '$dropoffLocation', '$contact', '$licencePlate')";
         $this->connection->query($statement);
     }
 }

@@ -3,7 +3,7 @@
 session_start();
 if(!isset($_SESSION["username"]))
 {
-    header("LOCATION: adminlogin.php");
+    header("LOCATION: index.php");
 }
 
 require_once("DBconnection.php");
@@ -68,17 +68,27 @@ $carsql2 = "SELECT * FROM Cars ORDER BY licencePlate DESC LIMIT $cstart,$per_cpa
 $carresult2 = mysqli_query($conn,$carsql2);
 
 echo "<table class='table table-dark'>";
-echo  "<tr><th>License Plate</th><th>Name</th><th>Brand</th><th>Seats</th><th>Transmission</th><th>Price</th><th>Image Source</th><th></th></tr>";
+echo  "<tr><th>License Plate</th><th>Name</th><th>Brand</th><th>Seats</th><th>Transmission</th><th>Category</th><th>Price</th><th>Image Source</th><th></th><th></th><</tr>";
 while($crow=mysqli_fetch_array($carresult2))
 {
   echo "<tr>";
   echo "<td>".$crow["licencePlate"]."</td>";
   echo "<td>".$crow["name"]."</td>";
   echo "<td>".$crow["brand"]."</td>";
+  echo "<td>".$crow["category"]."</td>";
   echo "<td>".$crow["seats"]."</td>";
   echo "<td>".$crow["transmission"]."</td>";
   echo "<td>".$crow["price"]."</td>";
   echo "<td>".$crow["imgSrc"]."</td>";
+  echo '<td><form action="editcar.php" method="POST"> <input hidden type="text" name="platetoedit" value='.$crow["licencePlate"].'> 
+                                                      <input hidden type="text" name="nametoedit" value='.$crow["name"].'>
+                                                      <input hidden type="text" name="brandtoedit" value='.$crow["brand"].'>
+                                                      <input hidden type="text" name="categorytoedit" value='.$crow["category"].'>
+                                                      <input hidden type="number" name="seatstoedit" value='.$crow["seats"].'>
+                                                      <input hidden type="text" name="transmissiontoedit" value='.$crow["transmission"].'>
+                                                      <input hidden type="text" name="pricetoedit" value='.$crow["price"].'>
+                                                      <input hidden type="text" name="imgtoedit" value='.$crow["imgSrc"].'>
+                                                      <input name="carediting" type=submit class="btn btn-sunny" value="EDIT">  </form></td>';
   echo '<td><form action="inspectcars.php?carpage='.$current_cpage.'" method="POST"> <input hidden type="text" name="cartodelete" value='.$crow["licencePlate"].'> <input name="cardeletion" type=submit class="btn btn-danger" value="DELETE">  </form></td>';
   echo "</tr>";
 }

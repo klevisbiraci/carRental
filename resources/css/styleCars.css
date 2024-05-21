@@ -4,14 +4,14 @@
     box-sizing: border-box;
 }
 
-/* body {
+body {
     font-family: 'Cormorant Garamond', sans-serif;
-    background-image: url('3_BENZ.jpg');
+    background-image: url('../images/3_BENZ.jpg');
     background-size: cover;
     background-position: center;
     color: #333;
     line-height: 1.6;
-} */
+}
 
 nav {
     height: 60px;
@@ -107,4 +107,8 @@ footer div a {
 footer a img {
     height: 30px;
     width: auto;
+}
+
+html {
+    scroll-behavior: smooth;
 }

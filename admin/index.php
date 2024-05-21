@@ -47,7 +47,7 @@ if(isset($_SESSION["username"]))
 
 </div>
 
-<form action="adminlogin.php" method="post">
+<form action="" method="post">
 
 
 <div class="container mt-5">

@@ -29,6 +29,67 @@ nav a:hover {
     color: #007bff;
 }
 
+/* Content Div Styling */
+.carSelected {
+    background-color: rgba(255, 255, 255, 0.9);
+    padding: 2rem;
+    margin-top: 2rem;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    color: hsl(211, 100%, 70%);
+}
+
+.carSelected img {
+    max-width: 100%;
+    width: 800px; /* Set a fixed width */
+    height: auto; /* Maintain aspect ratio */
+    display: block;
+    margin: 0 auto 20px; /* Center the image and add bottom margin */
+}
+
+.carSelected p {
+    margin-bottom: 10px;
+}
+
+body {
+    font-family: 'Cormorant Garamond', sans-serif;
+    background-image: url('../images/3_BENZ.jpg');
+    background-size: cover;
+    background-position: center;
+    color: #333;
+    line-height: 1.6;
+}
+/* Form Styling */
+form {
+    background-color: rgba(255, 255, 255, 0.8);
+    padding: 1rem;
+    margin: 2rem auto;
+    max-width: 600px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+form select,
+form input[type="date"],
+form input[type="text"],
+form input[type="submit"] {
+    margin-bottom: 1rem;
+    width: 100%;
+    padding: 0.5rem;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+form input[type="submit"] {
+    background-color: #007bff;
+    color: #fff;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+form input[type="submit"]:hover {
+    background-color: #0056b3;
+}
+
 footer {
     background: linear-gradient(to bottom, white 0%, hsl(0, 0%, 0%) 100%);
     color: #fff;
@@ -58,3 +119,7 @@ footer a img {
     height: 30px;
     width: auto;
 } 
+
+html {
+    scroll-behavior: smooth;
+}

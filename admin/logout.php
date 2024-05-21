@@ -5,7 +5,7 @@ session_start();
 if($_SERVER['REQUEST_METHOD'] == 'POST' && $_POST['tokenval']==$_SESSION['token'])
 {
     session_destroy();
-    header("LOCATION: adminlogin.php");
+    header("LOCATION: index.php");
 }
 
 

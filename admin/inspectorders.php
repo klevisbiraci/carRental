@@ -4,7 +4,7 @@
 session_start();
 if(!isset($_SESSION["username"]))
 {
-    header("LOCATION: adminlogin.php");
+    header("LOCATION: index.php");
 }
 
 

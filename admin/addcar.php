@@ -3,7 +3,7 @@
 session_start();
 if(!isset($_SESSION["username"]))
 {
-    header("LOCATION: adminlogin.php");
+    header("LOCATION: index.php");
 }
 
 
@@ -93,10 +93,16 @@ if(isset($_POST["carSubmission"]))
                             <div class="name">Features</div>
                             <div class="value">
                                 <div class="row row-space">
-                                    <div class="col-2">
+                                <div class="col-2">
                                         <div class="input-group-desc">
-                                            <input class="input--style-5" type="text" name="transmission">
-                                            <label class="label--desc">Tranmission type</label>
+                                            <!--<input class="input--style-5" type="text" name="transmission">-->
+                                            <br>
+                                            <select class="input--style-5" name="transmission" >
+                                              <option value="Manual">Manual</option> 
+                                              <option value="Automatic">Automatic</option>   
+                                            </select>   
+
+                                            <label class="label--desc">Transmission type</label>
                                         </div>
                                     </div>
                                     <div class="col-2">

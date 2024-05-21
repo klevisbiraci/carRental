@@ -58,3 +58,7 @@ footer a img {
     height: 30px;
     width: auto;
 } 
+
+html {
+    scroll-behavior: smooth;
+}

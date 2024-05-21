@@ -107,12 +107,12 @@ class Car {
 
     public function carToHTML() : void {
         echo "<div class='car'>";
-        echo "<img src='".$this->getImgSrc()."'>";
+        echo "<div style='height: 200px;'><img src='".$this->getImgSrc()."'></div>";
         echo "<p>".$this->getName()."</p>";
         echo "<p>".$this->getBrand()."</p>";
         echo "<p>".$this->getCategory()."</p>";
         echo "<p>".$this->getTransmission()."</p>";
-        echo "<p>".$this->getPrice()."</p>";
+        echo "<p>".$this->getPrice()."$/day"."</p>";
         echo "<input type='button' value='select' id='".$this->getLicencePlate()."'>";
         echo "<script> document.getElementById('".$this->getLicencePlate()."').addEventListener('click', function() { window.location.href = './car?plate=".$this->getLicencePlate()."'}) </script>";
         echo "</div>";

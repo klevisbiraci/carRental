@@ -12,25 +12,24 @@
                 session_start();
                 $car = $_SESSION["selectedCar"];
                 $req = $_SESSION["form"];
-
-                if (isset($_GET["err"])) {
-                    if ($_GET["err"] == "Contact") 
-                        echo "<h3> invalid contact </h3>";
-                    else 
-                        echo "<h3> car is taken </h3>";
-                } 
             ?>
-            <div>
+            <div class="carSelected">
                 <img src='<?php echo $car->getImgSrc(); ?>'>
-                <p><?php echo $car->getLicencePlate(); ?></p>
-                <p><?php echo $car->getName(); ?></p>
-                <p><?php echo $car->getBrand(); ?></p>
-                <p><?php echo $car->getCategory(); ?></p>
-                <p><?php echo $car->getSeats(); ?></p>
-                <p><?php echo $car->getTransmission(); ?></p>
-                <p><?php echo $car->getPrice(); ?></p>
+                <div style="display: flex; flex-direction: row; justify-content: center; gap: 10px;"><h4>Licence Plate:</h4> <p><?php echo $car->getLicencePlate(); ?></p></div>
+                <div style="display: flex; flex-direction: row; justify-content: center; gap: 10px;"><p><h4>Name:</h4> <?php echo $car->getName(); ?></p></div>
+                <div style="display: flex; flex-direction: row; justify-content: center; gap: 10px;"><p><h4>Brand:</h4> <?php echo $car->getBrand(); ?></p></div>
+                <div style="display: flex; flex-direction: row; justify-content: center; gap: 10px;"><p><h4>Category:</h4> <?php echo $car->getCategory(); ?></p></div>
+                <div style="display: flex; flex-direction: row; justify-content: center; gap: 10px;"><p><h4>Seats:</h4> <?php echo $car->getSeats(); ?></p></div>
+                <div style="display: flex; flex-direction: row; justify-content: center; gap: 10px;"><p><h4>Transmission:</h4> <?php echo $car->getTransmission(); ?></p></div>
+                <div style="display: flex; flex-direction: row; justify-content: center; gap: 10px;"><p><h4>Price:</h4> <?php echo $car->getPrice(); ?>$</p></div>
             </div>
             <form action="/project/order" method="post">
+                <?php if (isset($_GET["err"])) {
+                    if ($_GET["err"] == "Contact") 
+                        echo "<h3 style='color: red'> invalid contact </h3>";
+                    else 
+                        echo "<h3 style='color: red'> car is taken </h3>";
+                } ?>
                 <select name="pickupLocation">
                     <?php 
                         if ($req["pickupLocation"] == "Tirana International Airport") 
@@ -39,14 +38,14 @@
                             echo "<option value='Tirana International Airport'>Tirana International Airport</option>";
                         
                         if ($req["pickupLocation"] == "Epoka University") 
-                            echo "<option value='Tirana International Airport' selected>Epoka University</option>";
+                            echo "<option value='Epoka University' selected>Epoka University</option>";
                         else 
-                            echo "<option value='Tirana International Airport'>Epoka University</option>";
+                            echo "<option value='Epoka University'>Epoka University</option>";
 
                         if ($req["pickupLocation"] == "Other") 
-                            echo "<option value='Tirana International Airport' selected>Other</option>";
+                            echo "<option value='Other' selected>Other</option>";
                         else 
-                            echo "<option value='Tirana International Airport'>Other</option>";
+                            echo "<option value='Other'>Other</option>";
                     ?>
                 </select>
                 <select name="dropOffLocation">
@@ -57,19 +56,19 @@
                             echo "<option value='Tirana International Airport'>Tirana International Airport</option>";
                         
                         if ($req["dropOffLocation"] == "Epoka University") 
-                            echo "<option value='Tirana International Airport' selected>Epoka University</option>";
+                            echo "<option value='Epoka University' selected>Epoka University</option>";
                         else 
-                            echo "<option value='Tirana International Airport'>Epoka University</option>";
+                            echo "<option value='Epoka University'>Epoka University</option>";
 
                         if ($req["dropOffLocation"] == "Other") 
-                            echo "<option value='Tirana International Airport' selected>Other</option>";
+                            echo "<option value='Other' selected>Other</option>";
                         else 
-                            echo "<option value='Tirana International Airport'>Other</option>";
+                            echo "<option value='Other'>Other</option>";
                     ?>
                 </select>
                 <input type="date" name="pickupDate" value="<?php echo $req["pickupDate"]; ?>">
                 <input type="date" name="dropOffDate" value="<?php echo $req["dropOffDate"]; ?>">
-                <input type="text" name="contact">
+                <input type="text" name="contact" placeholder="contact">
                 <input type="submit" value="order">
                 <input style="visibility: hidden;" type="text" name="plate" value="<?php echo $car->getLicencePlate(); ?>">
             </form>
